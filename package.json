@@ -1,6 +1,6 @@
 {
   "name": "cgminer-api",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "cgminer api",
   "main": "index.js",
   "scripts": {
