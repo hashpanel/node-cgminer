@@ -13,13 +13,14 @@ $ npm install cgminer-api --save
 ```
 var Client = require('./lib/client');
 var client = new Client();
+client.load().then(function (client) {
 
-client.version().then(function (version) {
-  console.log(version);
+  client.version().then(function (version) {
+    console.log(version);
+  });
+
 });
 ```
-
-
 
 ## License
 MIT

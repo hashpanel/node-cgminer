@@ -13,7 +13,9 @@ describe('cgminer-api', function () {
 
     before(function (done) {
       client = new Client();
-      client.load().then(function () {
+      client.load()
+        .then(function (client) {
+          assert(client instanceof Client);
           done();
         })
         .catch(function (err) {
@@ -22,7 +24,9 @@ describe('cgminer-api', function () {
     });
 
     it('can double-load without error', function (done) {
-      client.load().then(function () {
+      client.load()
+        .then(function (client) {
+          assert(client instanceof Client);
           done();
         })
         .catch(function (err) {
