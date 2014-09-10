@@ -4,6 +4,7 @@ node_js:
   - '0.11'
 
 before_install:
+  - sudo apt-get install libcurl4-openssl-dev libncurses5-dev pkg-config libtool yasm autogen automake
   - wget https://github.com/ckolivas/cgminer/tarball/v2.11.4
   - tar zxf v2.11.4 --directory cgminer-2.11.4
   - cd cgminer-2.11.4
