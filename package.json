@@ -1,0 +1,31 @@
+{
+  "name": "cgminer-api",
+  "version": "0.1.0",
+  "description": "cgminer api",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha --reporter spec"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tjwebb/cgminer-api.git"
+  },
+  "keywords": [
+    "cgminer",
+    "sgminer",
+    "bfgminer",
+    "hashware"
+  ],
+  "author": "Travis Webb <me@traviswebb.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tjwebb/cgminer-api/issues"
+  },
+  "homepage": "https://github.com/tjwebb/cgminer-api",
+  "devDependencies": {
+    "mocha": "^1.21.4"
+  },
+  "dependencies": {
+    "lodash": "^2.4.1"
+  }
+}
