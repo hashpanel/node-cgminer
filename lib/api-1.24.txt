@@ -1,3 +1,5 @@
+
+
  version       VERSION        CGMiner=cgminer, version
                               API=API| version
 

