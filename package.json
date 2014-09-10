@@ -26,6 +26,8 @@
     "mocha": "^1.21.4"
   },
   "dependencies": {
-    "lodash": "^2.4.1"
+    "congruence": "^1.6.4",
+    "lodash": "^2.4.1",
+    "requireindex": "^1.1.0"
   }
 }

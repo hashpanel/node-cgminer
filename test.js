@@ -21,10 +21,32 @@ describe('cgminer-api', function () {
         });
     });
 
-    it('should query version', function (done) {
+    it('can double-load without error', function (done) {
+      client.load().then(function () {
+          done();
+        })
+        .catch(function (err) {
+          done(err);
+        });
+    });
+
+    it('#_commands', function () {
+      assert(_.isObject(client._commands));
+    });
+
+    it('#version()', function (done) {
+      assert(_.isFunction(client.version), 'client.version() is not a function');
       client.version().then(function (result) {
           assert(_.isObject(result));
           assert(_.isString(result.API));
+          done();
+        })
+        .catch(done);
+    });
+    it('#summary()', function (done) {
+      assert(_.isFunction(client.summary), 'client.summary() is not a function');
+      client.summary().then(function (result) {
+          assert(_.isObject(result));
           done();
         })
         .catch(done);
