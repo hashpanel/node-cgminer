@@ -1,6 +1,6 @@
 # cgminer-api
 
-Complete cgminer API implementation for Node.js with multi-version support and integration tests
+Complete cgminer API implementation for Node.js with multi-version support, response validation, and integration tests.
 
 [![NPM version][npm-image]][npm-url]
 [![Build status][travis-image]][travis-url]
