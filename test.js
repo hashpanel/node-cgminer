@@ -34,28 +34,56 @@ describe('cgminer-api', function () {
         });
     });
 
-    it('#_commands', function () {
-      assert(_.isObject(client._commands));
+    describe('#_commands', function () {
+      it('should be an object', function () {
+        //console.log(client._commands);
+        assert(_.isObject(client._commands));
+      });
     });
 
-    it('#version()', function (done) {
-      assert(_.isFunction(client.version), 'client.version() is not a function');
-      client.version().then(function (result) {
-          assert(_.isObject(result));
-          assert(_.isString(result.API));
-          done();
-        })
-        .catch(done);
-    });
-    it('#summary()', function (done) {
-      assert(_.isFunction(client.summary), 'client.summary() is not a function');
-      client.summary().then(function (result) {
-          assert(_.isObject(result));
-          done();
-        })
-        .catch(done);
+    describe('#version()', function (done) {
+      it('should return a validated object', function (done) {
+        assert(_.isFunction(client.version), 'client.version() is not a function');
+        client.version().then(function (result) {
+            assert(_.isObject(result));
+            assert(_.isString(result.API));
+            done();
+          })
+          .catch(done);
+        });
     });
 
+    describe('#summary()', function (done) {
+      it('should return a validated object', function (done) {
+        assert(_.isFunction(client.summary), 'client.summary() is not a function');
+        client.summary().then(function (result) {
+            assert(_.isObject(result));
+            done();
+          })
+          .catch(done);
+      });
+    });
+
+    describe('#pools()', function (done) {
+      it('should return a validated object', function (done) {
+        assert(_.isFunction(client.summary), 'client.pools() is not a function');
+        client.summary().then(function (pools) {
+            assert(_.isObject(pools));
+            done();
+          })
+          .catch(done);
+      });
+    });
+
+    describe('#devs()', function (done) {
+      it('should return a validated object', function (done) {
+        assert(_.isFunction(client.summary), 'client.devs() is not a function');
+        client.summary().then(function (devices) {
+            assert(_.isObject(devices));
+            done();
+          })
+          .catch(done);
+      });
+    });
   });
-
 });
