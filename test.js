@@ -56,8 +56,8 @@ describe('cgminer-api', function () {
     describe('#summary()', function (done) {
       it('should return a validated object', function (done) {
         assert(_.isFunction(client.summary), 'client.summary() is not a function');
-        client.summary().then(function (result) {
-            assert(_.isObject(result));
+        client.summary().then(function (summary) {
+            assert(_.isObject(summary));
             done();
           })
           .catch(done);
@@ -80,6 +80,16 @@ describe('cgminer-api', function () {
         assert(_.isFunction(client.summary), 'client.devs() is not a function');
         client.summary().then(function (devices) {
             assert(_.isObject(devices));
+            done();
+          })
+          .catch(done);
+      });
+    });
+    describe('#config()', function (done) {
+      it('should return a validated object', function (done) {
+        assert(_.isFunction(client.summary), 'client.config() is not a function');
+        client.summary().then(function (config) {
+            assert(_.isObject(config));
             done();
           })
           .catch(done);
