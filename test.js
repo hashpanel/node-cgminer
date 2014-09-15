@@ -13,7 +13,7 @@ describe('cgminer-api', function () {
 
     before(function (done) {
       client = new Client();
-      client.load()
+      client.connect()
         .then(function (client) {
           assert(client instanceof Client);
           done();
@@ -23,8 +23,8 @@ describe('cgminer-api', function () {
         });
     });
 
-    it('can double-load without error', function (done) {
-      client.load()
+    it('can double-connect without error', function (done) {
+      client.connect()
         .then(function (client) {
           assert(client instanceof Client);
           done();
