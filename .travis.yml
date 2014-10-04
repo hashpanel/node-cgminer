@@ -4,7 +4,8 @@ node_js:
   - '0.11'
 
 before_install:
-  - sudo apt-get install libcurl4-openssl-dev libncurses5-dev pkg-config libtool yasm autogen automake
+  - sudo apt-get install libcurl4-openssl-dev libncurses5-dev pkg-config libtool yasm
+    autogen automake
   - wget https://github.com/ckolivas/cgminer/tarball/v2.11.4
   - mkdir cgminer
   - tar zxvf v2.11.4 --directory cgminer
@@ -13,9 +14,19 @@ before_install:
   - CFLAGS="-O2 -Wall -march=native" ./configure --disable-opencl --disable-adl --enable-cpumining
   - make -j16
   - sudo make install
-  - ./cgminer -o stratum+tcp://stratum.mining.eligius.st:3334 -u 16GgJNQDHxx2NpjSxgrAAndnSEjBR4uBTt -p x --cpu-threads 1 --text-only --api-listen --real-quiet &
+  - ./cgminer -o stratum+tcp://stratum.mining.eligius.st:3334 -u 16GgJNQDHxx2NpjSxgrAAndnSEjBR4uBTt
+    -p x --cpu-threads 1 --text-only --api-listen --real-quiet &
   - cd ../..
   - sleep 10
 
 notifications:
   email: false
+
+deploy:
+  provider: npm
+  email: me@traviswebb.com
+  api_key:
+    secure: aXABOL9jsFWIkS1I7Obo0Wo5me5goqmG2yBSetaM224Gp2jrguY68J3l94wehkJi2o/KVVkcYeoC1OvNU/AzAKdF/KscvOTUCK3Vnq6AZYWHYnXjR0g++V0o6GIauaPtSV/rR7UwxRvW5bEyJSKVg6GLWpD9YpuaIv51NM+w+Uw=
+  on:
+    tags: true
+    all_branches: true
