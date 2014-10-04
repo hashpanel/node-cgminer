@@ -12,7 +12,10 @@ describe('cgminer-api', function () {
     var client;
 
     before(function (done) {
-      client = new Client();
+      client = new Client({
+        //host: '54.165.235.198',
+        //port: 4028
+      });
       client.connect()
         .then(function (client) {
           assert(client instanceof Client);
