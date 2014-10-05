@@ -13,8 +13,8 @@ describe('cgminer-api', function () {
 
     before(function (done) {
       client = new Client({
-        //host: '54.165.235.198',
-        //port: 4028
+        host: '54.165.235.198',
+        port: 4028
       });
       client.connect()
         .then(function (client) {
@@ -70,8 +70,9 @@ describe('cgminer-api', function () {
     describe('#pools()', function (done) {
       it('should return a validated object', function (done) {
         assert(_.isFunction(client.summary), 'client.pools() is not a function');
-        client.summary().then(function (pools) {
-            assert(_.isObject(pools));
+        client.pools().then(function (pools) {
+            //console.log(pools);
+            assert(_.isArray(pools));
             done();
           })
           .catch(done);
@@ -81,8 +82,9 @@ describe('cgminer-api', function () {
     describe('#devs()', function (done) {
       it('should return a validated object', function (done) {
         assert(_.isFunction(client.summary), 'client.devs() is not a function');
-        client.summary().then(function (devices) {
-            assert(_.isObject(devices));
+        client.devs().then(function (devices) {
+            //console.log(devices);
+            assert(_.isArray(devices));
             done();
           })
           .catch(done);
@@ -91,7 +93,8 @@ describe('cgminer-api', function () {
     describe('#config()', function (done) {
       it('should return a validated object', function (done) {
         assert(_.isFunction(client.summary), 'client.config() is not a function');
-        client.summary().then(function (config) {
+        client.config().then(function (config) {
+            //console.log(config);
             assert(_.isObject(config));
             done();
           })
