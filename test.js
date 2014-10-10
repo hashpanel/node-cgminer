@@ -94,11 +94,27 @@ describe('cgminer-api', function () {
       it('should return a validated object', function (done) {
         assert(_.isFunction(client.summary), 'client.config() is not a function');
         client.config().then(function (config) {
-            //console.log(config);
             assert(_.isObject(config));
             done();
           })
           .catch(done);
+      });
+    });
+    describe('#addpool()', function (done) {
+      it('should add a pool', function (done) {
+        var pool = [
+          'us1.ghash.io:3333',
+          'abshnasko.ephemeral1',
+          'x'
+        ];
+
+        assert(_.isFunction(client.addpool), 'client.addpool() is not a function');
+        client.addpool(pool).then(function (result) {
+            assert(_.isObject(result));
+            done();
+          })
+          .catch(done);
+
       });
     });
   });
