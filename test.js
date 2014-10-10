@@ -14,7 +14,7 @@ describe('cgminer-api', function () {
     before(function (done) {
       client = new Client({
         host: '54.165.235.198',
-        port: 4028
+        port: 4029
       });
       client.connect()
         .then(function (client) {
@@ -54,6 +54,17 @@ describe('cgminer-api', function () {
           })
           .catch(done);
         });
+    });
+
+    describe('#stats()', function (done) {
+      it('should return a validated object', function (done) {
+        assert(_.isFunction(client.stats), 'client.stats() is not a function');
+        client.stats().then(function (stats) {
+            assert(_.isObject(stats));
+            done();
+          })
+          .catch(done);
+      });
     });
 
     describe('#summary()', function (done) {
@@ -101,20 +112,132 @@ describe('cgminer-api', function () {
       });
     });
     describe('#addpool()', function (done) {
-      it('should add a pool', function (done) {
+      var poolCount = 0;
+      before(function (done) {
+        client.pools().then(function (pools) {
+            assert(_.isArray(pools));
+            poolCount = pools.length;
+            done();
+          })
+          .catch(done);
+      });
+      it('should return a validated object', function (done) {
         var pool = [
           'us1.ghash.io:3333',
           'abshnasko.ephemeral1',
           'x'
         ];
-
         assert(_.isFunction(client.addpool), 'client.addpool() is not a function');
-        client.addpool(pool).then(function (result) {
-            assert(_.isObject(result));
+        client.addpool(pool).then(function (status) {
+            assert(_.isObject(status));
+            assert(/added pool/i.test(status.Msg));
+            //console.log(result);
             done();
           })
           .catch(done);
-
+      });
+      it('should add a pool', function (done) {
+        client.pools().then(function (pools) {
+            assert(_.isArray(pools));
+            assert(pools.length === poolCount + 1,
+              'pool count should be ' + (poolCount + 1) + ' but is actually '+ pools.length);
+            done();
+          })
+          .catch(done);
+      });
+    });
+    describe('#enablepool()', function (done) {
+      it('should return a validated object', function (done) {
+        client.enablepool(0).then(function (status) {
+            assert(_.isObject(status));
+            done();
+          })
+          .catch(done);
+      });
+      it('should enable pool', function (done) {
+        client.enablepool(0).then(function (status) {
+            assert(/already enabled/.test(status.Msg), status.Msg);
+            done();
+          })
+          .catch(done);
+      });
+    });
+    describe('#disablepool()', function (done) {
+      it('should return a validated object', function (done) {
+        client.disablepool(0)
+          .then(function (status) {
+            assert(/Disabling pool/.test(status.Msg), status.Msg);
+            assert(_.isObject(status));
+            done();
+          })
+          .catch(done);
+      });
+      it('should disable pool', function (done) {
+        client.disablepool(0)
+          .then(function (status) {
+            assert(/already disabled/.test(status.Msg), status.Msg);
+            done();
+          })
+          .catch(done);
+      });
+    });
+    describe('#removepool()', function (done) {
+      it('should remove pool', function (done) {
+        client.removepool(0)
+          .then(function (status) {
+            assert(_.isObject(status));
+            assert(/Removed pool 0/.test(status.Msg), status.Msg);
+            done();
+          })
+          .catch(done);
+      });
+    });
+    describe('#switchpool()', function (done) {
+      it('should switch pool 0 to highest priority', function (done) {
+        client.switchpool(0)
+          .then(function (status) {
+            assert(_.isObject(status));
+            assert(_.any([
+                /Switching to pool 0/.test(status.Msg),
+                /Cannot remove active pool/.test(status.Msg)
+              ]), status.Msg
+            );
+            done();
+          })
+          .catch(done);
+      });
+    });
+    describe('#save()', function (done) {
+      it('should save config without error', function (done) {
+        client.save()
+          .then(function (status) {
+            assert(/Configuration saved to file/.test(status.Msg));
+            assert(_.isObject(status));
+            done();
+          })
+          .catch(done);
+      });
+    });
+    describe('#privileged()', function (done) {
+      it('should return success, indicating we have privileged access', function (done) {
+        client.privileged()
+          .then(function (status) {
+            assert(/Privileged access OK/.test(status.Msg));
+            assert(_.isObject(status));
+            done();
+          })
+          .catch(done);
+      });
+    });
+    describe('#restart()', function (done) {
+      it('should restart', function (done) {
+        client.restart()
+          .then(function (status) {
+            //console.log(status);
+            assert(_.isObject(status));
+            done();
+          })
+          .catch(done);
       });
     });
   });
