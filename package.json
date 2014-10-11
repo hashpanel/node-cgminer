@@ -33,6 +33,8 @@
     "bluebird": "^2.3.2",
     "congruence": "^1.6.4",
     "lodash": "^2.4.1",
-    "requireindex": "^1.1.0"
+    "request": "^2.45.0",
+    "requireindex": "^1.1.0",
+    "semver": "^4.0.3"
   }
 }
