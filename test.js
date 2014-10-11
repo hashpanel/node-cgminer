@@ -13,8 +13,8 @@ describe('cgminer-api', function () {
 
     before(function (done) {
       client = new Client({
-        //host: '54.165.235.198',
-        //port: 4029
+        host: '54.165.235.198',
+        port: 4029
       });
       client.connect()
         .then(function (client) {
@@ -185,10 +185,12 @@ describe('cgminer-api', function () {
       it('should disable and remove pool', function (done) {
         client.disablepool(0)
           .then(function (status) {
+            console.log(status);
             assert(_.isObject(status));
             return client.removepool(0);
           })
           .then(function (status) {
+            console.log(status);
             assert(/Removed pool 0/.test(status.Msg), status.Msg);
             done();
           })
