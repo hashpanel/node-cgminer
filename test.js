@@ -123,7 +123,7 @@ describe('cgminer-api', function () {
       });
       it('should return a validated object', function (done) {
         var pool = [
-          'us1.ghash.io:3333',
+          'stratum+tcp://us1.ghash.io:3333',
           'abshnasko.ephemeral1',
           'x'
         ];
@@ -229,11 +229,33 @@ describe('cgminer-api', function () {
           .catch(done);
       });
     });
+    describe('#check()', function (done) {
+      it('should check summary command', function (done) {
+        client.check('summary')
+          .then(function (cmd) {
+            assert(_.isObject(cmd));
+            assert(cmd.Exists === 'Y');
+            assert(cmd.Access === 'Y');
+            done();
+          })
+          .catch(done);
+      });
+      it('should check bogus command', function (done) {
+        client.check('bogus')
+          .then(function (cmd) {
+            assert(_.isObject(cmd));
+            assert(cmd.Exists === 'N');
+            assert(cmd.Access === 'N');
+            done();
+          })
+          .catch(done);
+      });
+    });
+
     describe('#restart()', function (done) {
       it('should restart', function (done) {
         client.restart()
           .then(function (status) {
-            //console.log(status);
             assert(_.isObject(status));
             done();
           })
