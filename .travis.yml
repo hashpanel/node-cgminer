@@ -3,6 +3,11 @@ node_js:
   - '0.10'
   - '0.11'
 
+env:
+  global:
+    - CGMINER_HOST=localhost
+    - CGMINER_PORT=4028
+
 before_install:
   - sudo apt-get install libcurl4-openssl-dev libncurses5-dev pkg-config libtool yasm
     autogen automake
