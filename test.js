@@ -182,10 +182,13 @@ describe('cgminer-api', function () {
       });
     });
     describe('#removepool()', function (done) {
-      it('should remove pool', function (done) {
-        client.removepool(0)
+      it('should disable and remove pool', function (done) {
+        client.disablepool(0)
           .then(function (status) {
             assert(_.isObject(status));
+            return client.removepool(0);
+          })
+          .then(function (status) {
             assert(/Removed pool 0/.test(status.Msg), status.Msg);
             done();
           })
