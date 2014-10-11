@@ -13,8 +13,8 @@ describe('cgminer-api', function () {
 
     before(function (done) {
       client = new Client({
-        host: '54.165.235.198',
-        port: 4029
+        //host: '54.165.235.198',
+        //port: 4029
       });
       client.connect()
         .then(function (client) {
