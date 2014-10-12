@@ -35,6 +35,7 @@ deploy:
   provider: npm
   email: me@traviswebb.com
   api_key:
-    secure: aXABOL9jsFWIkS1I7Obo0Wo5me5goqmG2yBSetaM224Gp2jrguY68J3l94wehkJi2o/KVVkcYeoC1OvNU/AzAKdF/KscvOTUCK3Vnq6AZYWHYnXjR0g++V0o6GIauaPtSV/rR7UwxRvW5bEyJSKVg6GLWpD9YpuaIv51NM+w+Uw=
+    secure: wMmlcX3in5XrYeYwYxiLzCXOMN3XKmzs05OBio/zHkRfx2RaftQdGqqxg3ZzVn+k8PMDScW6DGf6UcdACWZLn3riPV0tlbqUh9M6XCf9t49WeqrOJQMTR1cMXsSk9m+EHAiE1wwalP/i7H/XDTNBe//bwHmqnUEG29VOCOsOon0=
   on:
+    tags: true
     all_branches: true
