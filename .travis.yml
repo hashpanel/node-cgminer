@@ -25,6 +25,9 @@ before_install:
   - cd ../..
   - sleep 20
 
+after_script:
+  - sleep 5
+
 notifications:
   email: false
 
