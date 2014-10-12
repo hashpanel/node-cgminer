@@ -94,7 +94,7 @@ describe('cgminer-api', function () {
       it('should return a validated object', function (done) {
         assert(_.isFunction(client.summary), 'client.devs() is not a function');
         client.devs().then(function (devices) {
-            //console.log(devices);
+            console.log(devices);
             assert(_.isArray(devices));
             done();
           })
@@ -193,7 +193,6 @@ describe('cgminer-api', function () {
             }
             else {
               assert(/Removed pool 0/.test(status.Msg), status.Msg);
-              done();
             }
           })
           .then(function (status) {
