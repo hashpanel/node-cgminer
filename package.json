@@ -1,6 +1,6 @@
 {
   "name": "cgminer-api",
-  "version": "1.0.0-alpha1",
+  "version": "1.0.0",
   "description": "Complete cgminer API implementation for Node.js with multi-version support, response validation, and integration tests",
   "main": "index.js",
   "scripts": {
