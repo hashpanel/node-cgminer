@@ -3,7 +3,13 @@ node_js:
   - '0.10'
   - '0.11'
 
+env:
+  global:
+    - CGMINER_HOST=localhost
+    - CGMINER_PORT=4028
+
 before_install:
+  - rm -rf ~/.cgminer
   - sudo apt-get install libcurl4-openssl-dev libncurses5-dev pkg-config libtool yasm
     autogen automake
   - wget https://github.com/ckolivas/cgminer/tarball/v2.11.4
@@ -15,9 +21,12 @@ before_install:
   - make -j16
   - sudo make install
   - ./cgminer -o stratum+tcp://stratum.mining.eligius.st:3334 -u 16GgJNQDHxx2NpjSxgrAAndnSEjBR4uBTt
-    -p x --cpu-threads 1 --text-only --api-listen --real-quiet &
+    -p x --cpu-threads 1 --text-only --api-listen --api-allow W:0/0 --real-quiet &
   - cd ../..
-  - sleep 10
+  - sleep 20
+
+after_script:
+  - sleep 5
 
 notifications:
   email: false
