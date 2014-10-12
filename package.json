@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/tjwebb/cgminer-api.git"
+    "url": "https://github.com/hashware/node-cgminer-api.git"
   },
   "keywords": [
     "cgminer",
@@ -23,9 +23,9 @@
   "author": "Travis Webb <me@traviswebb.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/tjwebb/cgminer-api/issues"
+    "url": "https://github.com/hashware/node-cgminer-api/issues"
   },
-  "homepage": "https://github.com/tjwebb/cgminer-api",
+  "homepage": "https://github.com/hashware/node-cgminer-api",
   "devDependencies": {
     "mocha": "^1.21.4"
   },
