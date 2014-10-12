@@ -9,6 +9,7 @@ env:
     - CGMINER_PORT=4028
 
 before_install:
+  - rm -rf ~/.cgminer
   - sudo apt-get install libcurl4-openssl-dev libncurses5-dev pkg-config libtool yasm
     autogen automake
   - wget https://github.com/ckolivas/cgminer/tarball/v2.11.4
