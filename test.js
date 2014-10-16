@@ -56,7 +56,7 @@ describe('cgminer-api', function () {
         });
     });
 
-    describe('#stats()', function (done) {
+    describe.skip('#stats()', function (done) {
       it('should return a validated object', function (done) {
         assert(_.isFunction(client.stats), 'client.stats() is not a function');
         client.stats().then(function (stats) {
