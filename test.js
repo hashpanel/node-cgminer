@@ -129,9 +129,9 @@ describe('cgminer-api', function () {
         ];
         assert(_.isFunction(client.addpool), 'client.addpool() is not a function');
         client.addpool(pool).then(function (status) {
+            console.log(status);
             assert(_.isObject(status));
             assert(/added pool/i.test(status.Msg));
-            //console.log(result);
             done();
           })
           .catch(done);
