@@ -13,15 +13,21 @@ $ npm install cgminer-api --save
 
 ## Usage
 ```
-var Client = require('./lib/client');
-var client = new Client();
-client.load().then(function (client) {
-
-  client.version().then(function (version) {
-    console.log(version);
-  });
-
+var Client = require('cgminer-api').client;
+var cgminer = new Client({
+  host: '192.168.1.99',
+  port: 4028
 });
+cgminer.connect()
+  .then(function () {
+    return cgminer.version();
+  })
+  .then(function (version) {
+    console.log(version);
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
 ```
 
 ## License
