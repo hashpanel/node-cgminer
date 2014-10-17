@@ -12,12 +12,13 @@ $ npm install cgminer-api --save
 ```
 
 ## Usage
-```
+```js
 var Client = require('cgminer-api').client;
 var cgminer = new Client({
   host: '192.168.1.99',
   port: 4028
 });
+
 cgminer.connect()
   .then(function () {
     return cgminer.version();
